@@ -1,6 +1,8 @@
 package com.demo.kafka;
 
+import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.kafka.clients.producer.ProducerInterceptor;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -12,6 +14,8 @@ public class ProducerInterceptorTest implements ProducerInterceptor {
 	private final Logger logger = LoggerFactory.getLogger(ProducerInterceptorTest.class);
 	private int onSendCount;
 	private int onAckCount;
+
+	private static final String TRACKING_CORRELATION_ID = "trackingCorrelationId";
 
 	@Override
 	public ProducerRecord onSend(final ProducerRecord record) {
@@ -25,10 +29,12 @@ public class ProducerInterceptorTest implements ProducerInterceptor {
 						record.value().toString(), record.partition()));
 			}
 		}
-//		record.par
-		System.out.println(String.format("onSend topic=%s key=%s value=%s %d \n", record.topic(), record.key(),
+
+		System.out.print(String.format("onSend topic=%s key=%s value=%s %d \n", record.topic(), record.key(),
 				record.value().toString(), record.partition()));
-		 
+
+		record.headers().add(TRACKING_CORRELATION_ID, CorrelationIdGenerator.getId());
+
 		return record;
 	}
 
@@ -45,10 +51,10 @@ public class ProducerInterceptorTest implements ProducerInterceptor {
 						metadata.partition(), metadata.offset()));
 			}
 		}
-		 
-		System.out.println(String.format("onAck topic=%s, part=%d, offset=%d\n", metadata.topic(), metadata.partition(),
+
+		System.out.print(String.format("onAck topic=%s, part=%d, offset=%d\n", metadata.topic(), metadata.partition(),
 				metadata.offset()));
-		 
+
 	}
 
 	@Override
@@ -57,5 +63,14 @@ public class ProducerInterceptorTest implements ProducerInterceptor {
 
 	@Override
 	public void configure(Map<String, ?> configs) {
+	}
+
+	private static class CorrelationIdGenerator {
+
+		private static final Charset CHARSET = Charset.forName("UTF-8");
+
+		static byte[] getId() {
+			return UUID.randomUUID().toString().getBytes(CHARSET);
+		}
 	}
 }
