@@ -19,8 +19,8 @@ public class SubScoping {
 				"ITERGO_D_C2_T2_Topic", "ITERGO_D_C3_T1_Topic", "ITERGO_D_C3_T2_Topic", "ITERGO_D_C3_T3_Topic",
 				"ITERGO_D_C3_T4_Topic", "ITERGO_D_C3_T1_X1_Topic01", "ITERGO_D_C3_T1_X1_Topic02" };
 
-		String[] subscopes = new String[] { "ITERGO_D", "ITERGO_D_A", "ITERGO_D_C", "ITERGO_D_A1", "ITERGO_D_A2",
-				"ITERGO_D_A3", "ITERGO_D_B", "ITERGO_D_B1", "ITERGO_D_B2", "ITERGO_D_B3", "ITERGO_D_C1", "ITERGO_D_C2"
+		String[] subscopes = new String[] { "ITERGO_D", "ITERGO_D_A", "ITERGO_D_B", "ITERGO_D_C", "ITERGO_D_A1", "ITERGO_D_A2",
+				"ITERGO_D_A3",  "ITERGO_D_B1", "ITERGO_D_B2", "ITERGO_D_B3", "ITERGO_D_C1", "ITERGO_D_C2"
 
 		};
 
