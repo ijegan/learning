@@ -19,8 +19,8 @@ public class SubScoping {
 				"ITERGO_D_C2_T2_Topic", "ITERGO_D_C3_T1_Topic", "ITERGO_D_C3_T2_Topic", "ITERGO_D_C3_T3_Topic",
 				"ITERGO_D_C3_T4_Topic", "ITERGO_D_C3_T1_X1_Topic01", "ITERGO_D_C3_T1_X1_Topic02" };
 
-		String[] subscopes = new String[] { "ITERGO_D", "ITERGO_D_A", "ITERGO_D_B", "ITERGO_D_C", "ITERGO_D_A1", "ITERGO_D_A2",
-				"ITERGO_D_A3",  "ITERGO_D_B1", "ITERGO_D_B2", "ITERGO_D_B3", "ITERGO_D_C1", "ITERGO_D_C2"
+		String[] subscopes = new String[] { "ITERGO_D", "ITERGO_D_A", "ITERGO_D_C", "ITERGO_D_A1", "ITERGO_D_A2",
+				"ITERGO_D_A3", "ITERGO_D_B1", "ITERGO_D_B2", "ITERGO_D_B3", "ITERGO_D_C1", "ITERGO_D_C2"
 
 		};
 
@@ -30,15 +30,11 @@ public class SubScoping {
 		List<String> subscopeList = new ArrayList<>();
 		subscopeList.addAll(Arrays.asList(subscopes));
 
-		System.out.println("****before");
-		subscopeList.forEach(scope -> System.out.println(scope));
-
 		System.out.println();
-		System.out.println("****after");
+		System.out.println("****sort subscopes list based on length****");
 
 		// sorting the subscope list based on length in descending order
 		subscopeList.sort((s1, s2) -> Math.abs(s2.length()) - Math.abs(s1.length()));
-//		subscopeList.forEach(scope -> System.out.println(scope));
 
 		Map<String, List<String>> subscopeTopicListMap = new HashMap<>();
 
@@ -51,7 +47,8 @@ public class SubScoping {
 		}
 
 		System.out.println();
-		System.out.println("********************map iteration 1");
+		System.out.println(
+				"********Iteration 1 (contains duplicate topics in ikepnamespace scope & other scope )********");
 
 		for (String key : subscopeList) {
 			System.out.println(key);
@@ -63,7 +60,6 @@ public class SubScoping {
 
 		if (subscopeList.size() > 1) {
 			for (int i = 1; i < subscopelistArray.length; i++) {
-				System.out.println("processing " + subscopelistArray[i]);
 				List<String> list = subscopeTopicListMap.get(subscopelistArray[i]);
 
 				for (int j = 0; j < i; j++) {
@@ -78,7 +74,8 @@ public class SubScoping {
 			}
 		}
 
-		System.out.println("****************map iteration 2");
+		System.out.println("********Iteration 2 (duplicates removed from ikepnamescope )********");
+		System.out.println();
 
 		for (String key : subscopeList) {
 			System.out.println(key);
