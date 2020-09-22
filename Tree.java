@@ -56,6 +56,11 @@ public class Tree {
 		System.out.println(root.value + "  | count " + root.topics.size() + " | " + root.topics);
 		traverseTree(root);
 
+		// Find node
+//		System.out.println("ITERGO_D_C " + containsNode("ITERGO_D_C"));
+//		System.out.println("ITERGO_D " + containsNode("ITERGO_D"));
+//		System.out.println("ITERGO_D_X " + containsNode("ITERGO_D_X"));
+
 	}
 
 	public void addScope(String scope) {
@@ -67,7 +72,7 @@ public class Tree {
 	}
 
 	private Node addRecursive(Node current, String value) {
-		// root node
+		// root node ITERGO_D
 		if (current == null) {
 			root = new Node(value);
 			if (value.equals("ITERGO_D"))
@@ -77,8 +82,10 @@ public class Tree {
 		}
 
 		if (value.startsWith(current.value)) {
-			// ITERGO_D_B , ITERGO_D_C , ITERGO_D_A, ITERGO_D_X, ITERGO_D_Y,
-			// ITERGO_D_B_B1 , ITERGO_D_B_B2 , ITERGO_D_B_B2_B3
+			// ITERGO_D_A , ITERGO_D_C , ITERGO_D_A3, ITERGO_D_C2, ITERGO_D_B3, ITERGO_D_A1,
+			// ITERGO_D_A2 , ITERGO_D_B1, ITERGO_D_B2, ITERGO_D_C1,
+			// ITERGO_D_A1_T1 , ITERGO_D_A1_T2 , ITERGO_D_B1_T1 , ITERGO_D_B1_T2 ,
+			// ITERGO_D_C1_T1 , ITERGO_D_C1_T2
 
 			current = navigateToChildNode(current, value);
 
@@ -95,6 +102,18 @@ public class Tree {
 		}
 
 		return current;
+	}
+
+	// navigate from root node(ITERGO_D | level 0) to child node(eg: ITERGO_D_B_B1 |
+	// level 2) in multiple level recursively
+	private Node navigateToChildNode(Node current, String value) {
+		for (Node node : current.nodes) {
+			if (value.startsWith(node.value)) {
+				current = navigateToChildNode(node, value);
+			}
+		}
+		return current;
+
 	}
 
 	private Node addTopicSubscope(Node current, String topic) {
@@ -116,41 +135,8 @@ public class Tree {
 
 	}
 
-	// navigate from root node(ITERGO_D | level 0) to child node(eg: ITERGO_D_B_B1 |
-	// level 2) in multiple level recursively
-	private Node navigateToChildNode(Node current, String value) {
-		for (Node node : current.nodes) {
-			if (value.startsWith(node.value)) {
-				current = navigateToChildNode(node, value);
-			}
-		}
-		return current;
-
-	}
-
-	private static boolean containsNodeRecursive(Node current, String value) {
-		if (current == null) {
-			return false;
-		}
-		if (value == current.value) {
-			return true;
-		}
-//		return (value.compareTo(current.value) < 0) ? containsNodeRecursive(current.left, value)
-//				: containsNodeRecursive(current.right, value);
-		return false;
-	}
-
-	public static boolean containsNode(String value) {
-		return containsNodeRecursive(root, value);
-	}
-
+	// tree traversal
 	public static void traverseTree(Node current) {
-//		if (node != null) {
-//			traverseInOrder(node.left);
-//			System.out.println(" " + node.value);
-//			traverseInOrder(node.right);
-//		}
-//		System.out.println(root.value + " " + root.topics);
 
 		if (!current.nodes.isEmpty()) {
 			for (Node node : current.nodes) {
@@ -159,6 +145,34 @@ public class Tree {
 					traverseTree(node);
 			}
 
+		}
+
+	}
+
+	// find if scope is present
+	public static boolean containsNode(String value) {
+		return containsNodeRecursive(root, value);
+	}
+
+	// find scope in tree incomplete
+	private static boolean containsNodeRecursive(Node current, String value) {
+		if (current == null) {
+			return false;
+		}
+		if (value.equals(current.value)) {
+			return true;
+		} else {
+			for (Node node : current.nodes) {
+				if (!node.nodes.isEmpty())
+					if (value.startsWith(node.value)) {
+						containsNodeRecursive(node, value);
+					}
+			}
+		}
+		if (value.equals(current.value)) {
+			return true;
+		} else {
+			return false;
 		}
 
 	}
