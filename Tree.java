@@ -1,4 +1,4 @@
-package com.sample;
+package com.demo.kafka;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Tree {
 
-	static Node root = null;
-	static Node currentNode = null;
+	Node root = null;
+	Node currentNode = null;
 
 	public static void main(String[] args) {
 
@@ -53,8 +53,10 @@ public class Tree {
 		System.out.println("\n\n");
 
 		System.out.println("Topics size: " + topicList.size());
-		System.out.println(root.value + "  | count " + root.topics.size() + " | " + root.topics);
-		traverseTree(root);
+//		System.out.println(root.value + "  | count " + root.topics.size() + " | " + root.topics);
+
+		tree.traverseTree();
+//		traverseTree(root);
 
 		// Find node
 //		System.out.println("ITERGO_D_C " + containsNode("ITERGO_D_C"));
@@ -75,8 +77,8 @@ public class Tree {
 		// root node ITERGO_D
 		if (current == null) {
 			root = new Node(value);
-			if (value.equals("ITERGO_D"))
-				root.level = 0;
+//			if (value.equals("ITERGO_D"))
+			root.level = 0;
 			System.out.println("root added | " + value + "|  level " + root.level);
 			return root;
 		}
@@ -135,14 +137,23 @@ public class Tree {
 
 	}
 
-	// tree traversal
-	public static void traverseTree(Node current) {
+	public void traverseTree() {
+		traverseTree(root);
+	}
 
-		if (!current.nodes.isEmpty()) {
-			for (Node node : current.nodes) {
-				System.out.println(node.value + " | count " + node.topics.size() + " | " + node.topics);
-				if (!node.nodes.isEmpty())
-					traverseTree(node);
+	// tree traversal
+	void traverseTree(Node node) {
+
+		if (node != null) {
+			System.out.println(node.value + " | count " + node.topics.size() + " | " + "size of nodes:"
+					+ node.nodes.size() + " | " + node.topics + " \n");
+
+			for (Node subNode : node.nodes) {
+				System.out.print(" - " + subNode.value);
+			}
+			System.out.println("\n");
+			for (Node subNode : node.nodes) {
+				traverseTree(subNode);
 			}
 
 		}
@@ -150,12 +161,12 @@ public class Tree {
 	}
 
 	// find if scope is present
-	public static boolean containsNode(String value) {
+	public boolean containsNode(String value) {
 		return containsNodeRecursive(root, value);
 	}
 
 	// find scope in tree incomplete
-	private static boolean containsNodeRecursive(Node current, String value) {
+	private boolean containsNodeRecursive(Node current, String value) {
 		if (current == null) {
 			return false;
 		}
