@@ -1,7 +1,0 @@
-{ "type":"record",
-  "name":"Payment",
-  "namespace":"com.demo.kafka",
-  "fields":[{"name":"id","type":"string"},{"name":"amount","type":"int"}]
-}
-
-//"fields":[{"name":"id","type":"string"},{"name":"amount","type":"int"}, {"name":"msg","type":"string"} ]
