@@ -1,5 +1,7 @@
 package graph
 
+import "fmt"
+
 func ValidateBst(root *Node) bool {
 	arr := InOrder(root)
 	for i, j := 0, 1; j < len(arr); i, j = i+1, j+1 {
@@ -94,4 +96,13 @@ func InOrder(ptr *Node) []int {
 		return arr
 	}
 	return arr
+}
+
+
+func InOrderTest(ptr *Node) {
+	if ptr != nil {
+		InOrderTest(ptr.left)
+		fmt.Println(ptr.data)
+		InOrderTest(ptr.right)
+	}
 }

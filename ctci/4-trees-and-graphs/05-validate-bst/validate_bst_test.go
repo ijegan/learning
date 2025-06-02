@@ -65,4 +65,8 @@ func TestValidateBst(t *testing.T) {
 	if !flag {
 		t.Errorf("Dispay(%v) =  %v, | Not a binary search tree", "7,11..20", display)
 	}
+
+	//In order test!
+	fmt.Println("In order test!")
+	InOrderTest(root)
 }
