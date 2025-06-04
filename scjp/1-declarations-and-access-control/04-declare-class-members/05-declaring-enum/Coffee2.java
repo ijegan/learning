@@ -36,6 +36,7 @@ public class Coffee2 {
 	}
 
 	void doSomething() {
+		// enum cannot be declared inside a method ??
 		enum PERSON {
 			GOOD, BAD, UGLY
 		}
