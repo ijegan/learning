@@ -1,4 +1,4 @@
-public class Animal {
+class Animal {
 	private int legs;
 	private int weight;
 	private String continent;

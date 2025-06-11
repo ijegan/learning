@@ -1,5 +1,5 @@
 // Elephant is a Animal - 'extends' keyword
-public class Elephant extends Animal {
+class Elephant extends Animal {
 	// Elephant has a relationship with Rope
 	// Elephant has a reference to Rope
 	private Rope rope;
