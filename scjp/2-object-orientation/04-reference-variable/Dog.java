@@ -1,4 +1,4 @@
-public class Dog extends Animal implements Pet {
+class Dog extends Animal implements Pet {
 	void run() {
 		System.out.println("Dog runs fast");
 	}

@@ -1,5 +1,3 @@
-package com.example.models.relationship;
-
 // AfricanElephant is a Elephant - 'extends' keyword
 public class AfricanElephant extends Elephant {
 

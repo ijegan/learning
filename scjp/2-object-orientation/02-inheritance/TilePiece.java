@@ -1,5 +1,3 @@
-package com.example.models.inheritance;
-
 class TilePiece extends GameShape {
 	public void getAdjacent() {
 		System.out.println("adjacent!!");

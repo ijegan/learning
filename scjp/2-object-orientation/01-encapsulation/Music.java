@@ -1,5 +1,3 @@
-package com.example.models.encapsulation;
-
 enum level {
 	LOW, MEDIUM, HIGH
 }

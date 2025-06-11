@@ -1,5 +1,3 @@
-package com.example.models.inheritance;
-
 class TestShapes {
 	public static void main(String[] args) {
 		PlayerPiece pp = new PlayerPiece();

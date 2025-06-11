@@ -1,5 +1,3 @@
-package com.example.models.relationship;
-
 class Rope {
 
 	private int length;

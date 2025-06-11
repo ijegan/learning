@@ -1,5 +1,3 @@
-package com.example.models.inheritance;
-
 class PlayerPiece extends GameShape implements Animate {
 	public void movePiece() {
 		System.out.println("moving piece");

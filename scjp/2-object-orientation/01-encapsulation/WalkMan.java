@@ -1,5 +1,3 @@
-package com.example.models.encapsulation;
-
 public class WalkMan {
 	// void playMusic(){
 	public static void main(String[] args) { 

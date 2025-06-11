@@ -1,5 +1,3 @@
-package com.example.models.relationship;
-
 public class Animal {
 	private int legs;
 	private int weight;

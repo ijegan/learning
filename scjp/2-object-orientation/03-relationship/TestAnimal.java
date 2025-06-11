@@ -1,5 +1,3 @@
-package com.example.models.relationship;
-
 public class TestAnimal {
 
 	public static void main(String[] args) {

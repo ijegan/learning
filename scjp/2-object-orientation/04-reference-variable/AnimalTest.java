@@ -1,4 +1,4 @@
-public class AnimalTest {
+class AnimalTest {
 	public static void main(String[] args) {
 		// casting not needed for upcasting since it more restrictive
 		Animal a = new Dog();
